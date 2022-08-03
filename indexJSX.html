@@ -5,17 +5,24 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Using React</title>
+  <title>Using JSX</title>
 </head>
+<style>
+    .list-item {
+      font-size: 2rem;
+      text-transform: uppercase;
+    }
 
+</style>
 <body>
   <div id="root"></div>
-
+  <label for="name">Nombre:</label>
+  <input type="text" id="name" placeholder="Ingrese nombre">
 
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-  <script>
+  <script type="text/babel">
     const movies = [
       "Mean Girls",
       "Die Hard",
@@ -48,9 +55,18 @@
     const app = document.getElementById("root");
     /* {movies: [] }*/
     const Movies = (props) => {
-      const movies_list =  props.movies.map( peli => React.createElement("li", {key:peli},peli)) 
-      return React.createElement("ul", null, movies_list)
+        const li_extra = <li>Hola Mundo</li>;
+        const print = "Renzo"
+
+        return (
+          <ul>
+            {props.movies.map(peli => <li className="list-item" key={peli}>{peli}</li>)}
+            {li_extra}
+          </ul>
+        )
     }
+
+    
 
     ReactDOM.render(React.createElement(Movies, {movies}), app)
 
