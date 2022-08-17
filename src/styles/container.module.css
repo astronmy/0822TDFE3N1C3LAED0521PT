@@ -1,16 +1,22 @@
-.title{
-  font-size: 3rem;
-  color: #ffcc01;
-  text-align: center;
-  text-shadow: 4px 4px #3265af;
-}
 .container {
-  background: transparent url("/public/images/bg-content.png") left top;
-  background-size: 100% 1px;
+  align-items: center;
+  background-color: crimson;
   display: flex;
-  flex-wrap: wrap;
+  gap: 2rem;
+  flex-direction: column;
   justify-content: center;
-  gap: 1rem;
-  min-height: 600px;
+  padding: 3rem;
+  margin: auto;
+}
+
+.container :nth-child(1) {
+  width: 200px;
+}
+
+.container :nth-child(2) {
+  width: 200px;
+}
+
+.btn {
   padding: 1rem;
 }
