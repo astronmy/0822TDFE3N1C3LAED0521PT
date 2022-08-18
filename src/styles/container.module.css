@@ -14,3 +14,8 @@
   min-height: 600px;
   padding: 1rem;
 }
+.principal{
+  display: block;
+  margin: 0 auto;
+  max-width: 200px;
+}

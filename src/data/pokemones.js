@@ -79,3 +79,12 @@ export const pokemonData = [
   }
 ];
 export const getPokemones = () => pokemonData
+
+export const getRandomPokemon = () => {
+    const id = Math.floor(Math.random() * 16)+1;
+    console.log('se genero '+id)
+
+    const pokemon = pokemonData.find((item) => item.id === id)
+    return pokemon
+
+}

@@ -1,33 +1,15 @@
 import React from 'react'
 import styles from '../../styles/pokemon.module.css'
-import styled, {css} from 'styled-components'
 
-const Pokemon = ({ name, avatar, type }) => {
-
-  const setTimeTransition = (time) => `all ${time} ease-in-out`;
-
-  const H4Pokemon = styled.h4`
-    font-size: 3rem;
-    color: ${(props) => (props.color ? props.color : '#000')};
-    color: ${({color}) => (color ? color : '#000')};
-    text-align: center;
-    transition: ${setTimeTransition('1s')};
-    &:hover{
-      color: blue;
-    }
-    ${(props) => props.isBorder && css`
-      border: 2px solid blue;
-      border-radius: 10%;
-      padding: 0.5rem;
-    ` }
-  `;
-
+const Pokemon = ({ name, avatar:image, type, choose }) => {
+  
   return (
     <div className={styles.card}>
       <figure>
-        <img src={avatar} className={styles.card__image} />
+        <img src={image} className={styles.card__image} alt={name} />
       </figure>
-      <H4Pokemon isBorder={false}>{name}</H4Pokemon>
+      <h4>{name}</h4>
+      <button onClick={() => choose(image, name)} className={styles.btn}>Yo te elijo!</button>
     </div>
   )
 }
