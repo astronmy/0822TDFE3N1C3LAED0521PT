@@ -1,11 +1,9 @@
 import './App.css';
-import Container from './components/Container';
-import ContainerFuncional from './components/ContainerFuncional';
 
 function App() {
  
   return (
-      <ContainerFuncional title="Tengo que atraparlos!"/>
+     <h1>Hola</h1>
   );
 }
 
