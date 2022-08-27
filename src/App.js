@@ -1,5 +1,6 @@
 import './App.css';
 import Button from './components/Button';
+import CounterApp from './components/CounterApp';
 import RelojHook from './components/RelojHooks';
 import styles from './styles/app.module.css'
 
@@ -12,10 +13,12 @@ function App() {
 
   return (
     <div className={styles.container}>
-     <h1>Hola</h1>
+     {/* <h1>Hola</h1>
      <button onClick={() => handleClick( "Hola Mundo")}> Click </button>
      <Button myClick={() => handleClick( "Hola Mundo")}/>
-      <RelojHook></RelojHook>
+      <RelojHook></RelojHook> */}
+
+      <CounterApp stock={20}/>
 
     </div>
   );
