@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import styles from '../styles/container.module.css'
+import styles from '../styles/app.module.css'
 const CounterApp = ({stock}) =>{
   const [counter, setCounter] = useState(0)
 
