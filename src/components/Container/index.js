@@ -9,9 +9,10 @@ const randomPokemon = getRandomPokemon();
 const Container = ({data , title}) => {
   console.log(randomPokemon)
   const [imagen, setImagen] = useState(randomPokemon.avatar)
+  const [name, setName ] = useState(randomPokemon.name)
 
   const changeImage = (avatar, name) => {
-    alert(name);
+    setName(name)
     setImagen(avatar)
   }
   return (
@@ -20,7 +21,14 @@ const Container = ({data , title}) => {
       <img className={styles.principal} src={imagen} alt="imagen principal" />
       <div className={styles.container}>
         {
-          data.map((pokemon) => <Pokemon key={(pokemon.id)} name={pokemon.name} avatar={pokemon.avatar} type={pokemon.type} choose={changeImage} />)
+          data.map((pokemon) => 
+
+          <Pokemon key={(pokemon.id)} 
+            name={pokemon.name} 
+            avatar={pokemon.avatar} 
+            type={pokemon.type} 
+            choose={changeImage} />
+          )
         }
       </div>
     </>
