@@ -38,5 +38,29 @@ Para poder capturar los errores debemos agregar un catch que será el encargado 
 ## Servicio para probar respuestas 
 Para poder testear respuestas podemos hacer uso del servicio de [mock.codes](https://mock.codes/)
 
+##Cómo usar fetch en React
+
+Manejar el ciclo de vida de los componentes nos permite dar una mejor UX ya que podemos mostrar nuestro sitio de forma inmediata (la estructura estática) y todo aquello que genera lo que se denomina una llamada asíncrona controlarlo luego del montaje de los componentes.
+
+Es decir, puedo cargar toda la estructura de mi sitio pero el contenedor que muestra para el ejemplo los personajes de Rick and Morty dejarlo cargando hasta que obtengamos una respuesta de la API.
+
+A través del uso de useEffect puedo controlar este ciclo de vida. Por lo que hemos visto hasta ahora luego del montaje es conveniente hacer esa llamada a la API
+
+```
+const [loading, setLoading] = useState(true)
+  const [page, setPage] = useState(1)
+  const [personajes, setPersonajes] = useState([])
+
+ useEffect( () => {
+   console.log('1')
+     fetch(`${endpoint}${page}`)
+     .then( (response) => response.json())
+     .then( (data) => {
+         setPersonajes(data.results)
+         setLoading(false)
+     })
+ }, [])
+```
+
 
 
