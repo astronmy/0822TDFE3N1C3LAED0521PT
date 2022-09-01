@@ -38,7 +38,7 @@ Para poder capturar los errores debemos agregar un catch que será el encargado 
 ## Servicio para probar respuestas 
 Para poder testear respuestas podemos hacer uso del servicio de [mock.codes](https://mock.codes/)
 
-##Cómo usar fetch en React
+## Cómo usar fetch en React
 
 Manejar el ciclo de vida de los componentes nos permite dar una mejor UX ya que podemos mostrar nuestro sitio de forma inmediata (la estructura estática) y todo aquello que genera lo que se denomina una llamada asíncrona controlarlo luego del montaje de los componentes.
 
