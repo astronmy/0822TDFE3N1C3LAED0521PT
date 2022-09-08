@@ -41,7 +41,7 @@ const CharacterList = () => {
       </div>
       <div className={styles.container}>
         {personajes.map((personaje) =>
-          <Character key={personaje.id} id={personaje.id} name={personaje.name} image={personaje.image} />
+          <Character key={personaje.id} {...personaje} />
         )
         }
       </div>
