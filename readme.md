@@ -1,166 +1,31 @@
-## ¿Qué es Axios?
-Axios es una libreria de cliente HTTP que le permite realizar solicitudes a un endpoint
+## Contexto
+	Nos permite pasar datos entre los componentes sin la necesidad de utilizar el envío manual a través de props ya que como vimos hasta ahora los datos se envían desde componentes padres a los hijos por medio de las props.
 
-### Por qué usar Axios en React
-Hay varias bibliotecas diferentes que puede usar para realizar estas solicitudes, entonces, ¿por qué elegir Axios?
+#### No abusar del uso de Context
+	Es importante tener en cuenta que el uso de contextos debe ser juicioso, ya que no debemos reemplazar una cosa por la otra, es decir, no reemplazar el envío de props por un contexto. 
 
-Aquí hay cinco razones por las que debería usar Axios como su cliente para realizar solicitudes HTTP:
+### Create context
+	Partimos de la creación del objeto context empleando createContext y enviandole un valor por defecto a nuestro contexto. Con este objeto podemos hacer uso de un componente Provider y el hook con useContext que nos permite consumir datos que se envíen por el provider
 
-1. Tiene buenos valores predeterminados para trabajar con datos JSON. A diferencia de alternativas como Fetch API, a menudo no necesita configurar sus encabezados. O realice tareas tediosas como convertir el cuerpo de su solicitud en una cadena JSON.
-2. Axios tiene nombres de funciones que coinciden con cualquier método HTTP. Para realizar una solicitud GET, utiliza el método .get().
-3. Axios hace más con menos código. A diferencia de Fetch API, solo necesita una devolución de llamada .then() para acceder a los datos JSON solicitados.
-4. Axios tiene un mejor manejo de errores. Axios arroja 400 y 500 errores de rango por nosotros. A diferencia de Fetch API, donde debe verificar el código de estado y arrojar el error nosotros mismo.
-5. Axios se puede utilizar tanto en el servidor como en el cliente. Si está escribiendo una aplicación en Node.js, tenga en cuenta que Axios también se puede usar en un entorno separado del navegador.
-
-### Cómo instalar Axios en un proyecto de React
-Si tienes un proyecto React existente, solo necesita instalar Axios con npm (o cualquier otro administrador de paquetes):
+### Context Provider
+Como mencioné cada uno de los objetos context que se usen vienen con un componente Provider de React el cual permite que los componentes hijos tengan acceso a los datos globales que se pasan al provider.	
 
 ```
-npm install axios
-```
-### Solicitud GET
+  <MiContexto.Provider value={lo que habilito para el contexto}>
 
 ```
-import axios from "axios";
-import { useEffect, useState } from 'react';
+### Use context
+El useContext es un consumidor del Provider en otras palabras es la forma de acceder o consumir la data que pasamos por el value del Provider si la data que pasamos por el Provider cambia los consumidores o consumidor en este caso el useContext se va a renderizar nuevamente.
 
-const url = "https://digitalhouse.com/students/1";
-
-export default function App() {
-const [student, setStudent] = useState({});
-
-useEffect(() => {
-  axios.get(url).then((response) => {
-    setStudent(response.data);
-  });
-}, []);
-
-if (!student) return null;
-
-  return (
-    <div>
-      <h1>{student.name}</h1>
-      <p>{student.lastname}</p>
-    </div>
-  );
-}
+La forma de trabajar con useContext es recibiendo el objeto contexto y devuelve el valor del contexto actual, como ya se mencionó el valor del contexto actual se determina por el value del Provider.
 
 ```
-
-### Solicitud POST
-
-```
-import axios from "axios";
-import React from "react";
-
-const baseURL = "https://digitalhouse.com/students/";
-
-export default function App() {
-  const [student, setStudent] = useState(null);
-
-  useEffect(() => {
-    axios.get(`${baseURL}/1`).then((response) => {
-      setStudent(response.data);
-    });
-  }, []);
-
-  const createStudent = () => {
-    axios
-      .post(baseURL, {
-        name: "Bruce",
-        lastname: "Wayne"
-      })
-      .then((response) => {
-        setStudent(response.data);
-      });
-  }
-
-  if (!student) return "No student!"
-
-  return (
-    <div>
-      <h1>{student.name}</h1>
-      <p>{student.lastname}</p>
-      <button onClick={createStudent}>Create Student</button>
-    </div>
-  );
-}
-```
-
-### Solicitud PUT
-```
-import axios from "axios";
-import React from "react";
-
-const baseURL = "https://digitalhouse.com/students";
-
-export default function App() {
-  const [student, setStudent] = useState(null);
-
-  useEffect(() => {
-    axios.get(`${baseURL}/1`).then((response) => {
-      setStudent(response.data);
-    });
-  }, []);
-
-  const updateStudent = () => {
-    axios
-      .put(`${baseURL}/1`, {
-        name: "Tony",
-        lastname: "Stark"
-      })
-      .then((response) => {
-        setStudent(response.data);
-      });
-  }
-
-  if (!student) return "No student!"
-
-  return (
-    <div>
-      <h1>{student.name}</h1>
-      <p>{student.lastname}</p>
-      <button onClick={updateStudent}>Update Student</button>
-    </div>
-  );
-}
+  const contexto = useContext(MiContexto)
 
 ```
-### Solicitud DELETE
+En este punto puedon desestructurar si se trata de mas de  un valor lo que ofrece el contexto
 
 ```
-import axios from "axios";
-import React from "react";
-
-const baseURL = "https://digitalhouse.com/students";
-
-export default function App() {
-  const [student, setStudent] = useState(null);
-
-  useEffect(() => {
-    axios.get(`${baseURL}/1`).then((response) => {
-      setStudent(response.data);
-    });
-  }, []);
-
-  const deleteStudent = () => {
-    axios
-      .delete(`${baseURL}/1`)
-      .then(() => {
-        alert("Student deleted!");
-        setStudent(null)
-      });
-  }
-
-  if (!student) return "No Student!"
-
-  return (
-    <div>
-      <h1>{student.name}</h1>
-      <p>{student.lastname}</p>
-      <button onClick={deleteStudent}>Delete Student</button>
-    </div>
-  );
-}
+  const {value1, value2} = useContext(MiContexto)
 
 ```
