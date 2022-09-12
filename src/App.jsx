@@ -1,24 +1,20 @@
-import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import CharacterDetail from './components/CharacterDetail';
-import CharacterList from './components/CharacterList';
+import CounterApp from './components/CounterApp';
 import Header from './components/Header';
+import { CounterContextProvider } from './context/CounterContextProvider';
 
 function App() {
 
   return (
-    <>
+    <CounterContextProvider>
       <BrowserRouter>
-        <Header />  
+        <Header/>
         <Routes>
-            <Route path="/" element={<CharacterList />} />
-            <Route path="/character/:id" element={<CharacterDetail />}>
-                <Route path='data' element={<h3 style={{fontSize: '3rem', textAlign: 'center', color: 'white'}}>More Info</h3>} />
-            </Route>
-            <Route path='*' element={<h2 style={{fontSize: '3rem', textAlign: 'center', color: 'white'}}>NOT FOUND</h2>} />
+            <Route path='/' element={<CounterApp quantity={10} />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </CounterContextProvider>
   )
 }
 

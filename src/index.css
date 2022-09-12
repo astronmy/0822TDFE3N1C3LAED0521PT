@@ -1,8 +1,4 @@
 
-@font-face {
-  font-family: 'RickAndMorty';
-  src: url('./assets/fonts/get_schwifty.ttf')  format('truetype');
-}
 * {
   margin: 0;
   padding: 0;
@@ -16,10 +12,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('./assets/images/bg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  font-family: 'RickAndMorty';
 }
 
 code {
