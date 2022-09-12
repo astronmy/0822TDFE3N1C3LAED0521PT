@@ -1,11 +1,11 @@
 ## Contexto
-	Nos permite pasar datos entre los componentes sin la necesidad de utilizar el envío manual a través de props ya que como vimos hasta ahora los datos se envían desde componentes padres a los hijos por medio de las props.
+Nos permite pasar datos entre los componentes sin la necesidad de utilizar el envío manual a través de props ya que como vimos hasta ahora los datos se envían desde componentes padres a los hijos por medio de las props.
 
 #### No abusar del uso de Context
-	Es importante tener en cuenta que el uso de contextos debe ser juicioso, ya que no debemos reemplazar una cosa por la otra, es decir, no reemplazar el envío de props por un contexto. 
+Es importante tener en cuenta que el uso de contextos debe ser juicioso, ya que no debemos reemplazar una cosa por la otra, es decir, no reemplazar el envío de props por un contexto. 
 
 ### Create context
-	Partimos de la creación del objeto context empleando createContext y enviandole un valor por defecto a nuestro contexto. Con este objeto podemos hacer uso de un componente Provider y el hook con useContext que nos permite consumir datos que se envíen por el provider
+Partimos de la creación del objeto context empleando createContext y enviandole un valor por defecto a nuestro contexto. Con este objeto podemos hacer uso de un componente Provider y el hook con useContext que nos permite consumir datos que se envíen por el provider
 
 ### Context Provider
 Como mencioné cada uno de los objetos context que se usen vienen con un componente Provider de React el cual permite que los componentes hijos tengan acceso a los datos globales que se pasan al provider.	
