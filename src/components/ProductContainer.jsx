@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { Box, Container, Grid, Skeleton, Stack } from '@chakra-ui/react'
 import Product from "./Product"
 
 const ProductContainer = () => {
@@ -9,10 +10,12 @@ const ProductContainer = () => {
         const url = `https://api.mercadolibre.com/sites/MLA/search?q=${search}`
         setLoading(true)
 
-        fetch(url)
-        .then( (response) => response.json() )
-        .then( (result) => setProducts(result.results))
-        .finally(() => setLoading(false))
+        setTimeout(() => {
+            fetch(url)
+                .then((response) => response.json())
+                .then((result) => setProducts(result.results))
+                .finally(() => setLoading(false))
+        }, 1500)
     }
 
     useEffect(() => {
@@ -20,16 +23,20 @@ const ProductContainer = () => {
     }, [])
 
 
-    if(loading){
-      return (
-          <h5>Cargando productos ...</h5>
-      )
+    if (loading) {
+        return (
+            <Skeleton>
+                <span>Chakra ui is cool</span>
+            </Skeleton>
+        )
     }
 
-    return(
-        <div>
-            {products.map( (item) => <Product key={item.id} {...item} />)}
-        </div>
+    return (
+        <Container maxW='4xl' centerContent >
+            <Grid templateColumns='repeat(1, 1fr)' gap={6}>
+                {products.map((item) => <Product key={item.id} {...item} />)}
+            </Grid>
+        </Container>
     )
 
 }

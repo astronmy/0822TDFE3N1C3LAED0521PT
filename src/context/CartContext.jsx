@@ -8,30 +8,49 @@ export const CartContextProvider = ({ children }) => {
 
   const addItem = (product, quantity) => {
 
-    let item = isExists(product.id)
-    if (!item) {
-        item = {
-          ...product,
-          quantity
+    if (!isInCart(product.id)) {
+      let item = {
+        ...product,
+        quantity
+      }
+      setCart([...cart, item])
+    } else {
+
+      const aux = [...cart]
+
+      aux.forEach(item => {
+        if (product.id === item.id) {
+          item.quantity += quantity
         }
-        setCart([...cart, item])
-    }else{
-       cart.forEach(product => {
-          if(product.id === item.id){
-            product.quantity += quantity
-          }
-       })
+      })
+      setCart(aux)
     }
 
   }
-  const isExists = (id) => {
-    return cart.find((item) => item.id === id)
+  const isInCart = (id) => {
+    return cart.some((item) => item.id === id)
   }
+
+  const removeItem = (id) => {
+    setCart(cart.filter(product => product.id !== id))
+  }
+
+  const getTotal = () => {
+      let total = 0
+      cart.forEach(product => {
+          total += product.price
+      })
+      return total
+  }
+
 
 
   return (
     <Context.Provider value={{
-      addItem
+      addItem,
+      removeItem,
+      getTotal,
+      cart
     }}>
       {children}
     </Context.Provider>
