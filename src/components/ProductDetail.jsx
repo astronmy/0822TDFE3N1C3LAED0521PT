@@ -1,10 +1,12 @@
-import { useEffect, useState, useContext } from "react"
+import { useState, useContext } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 /* style components */
-import { Box, Container, Image } from '@chakra-ui/react'
+import { Box, Image } from '@chakra-ui/react'
 /* components */
 import CartContext from "../context/CartContext"
 import ItemCount from "./ItemCount"
+import { useAsync } from "../hooks/useAsync"
+import { getProductById } from "../services/MeliApi"
 
 const ProductDetail = () => {
   const [product, setProduct] = useState({})
@@ -13,22 +15,15 @@ const ProductDetail = () => {
   const { addItem } = useContext(CartContext)
   const navigate = useNavigate()
 
-  const getProductDetail = (id) => {
-    const url = `https://api.mercadolibre.com/items/${id}`
-    setLoading(true)
-
-    fetch(url)
-      .then((response) => response.json())
-      .then((result) => {
-        setProduct(result)
-
-      })
-      .finally(() => setLoading(false))
-  }
-
-  useEffect(() => {
-    getProductDetail(productId)
-  }, [productId])
+  useAsync(
+    setLoading,
+    () => getProductById(productId),
+    setProduct,
+    null,
+    [],
+    null,
+    null)
+  
 
   const handleOnAdd = (count) => {
     console.log(count)

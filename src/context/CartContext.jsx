@@ -43,6 +43,10 @@ export const CartContextProvider = ({ children }) => {
       return total
   }
 
+  const getQuantity =  () => {
+      return cart.length
+  }
+
 
 
   return (
@@ -50,6 +54,7 @@ export const CartContextProvider = ({ children }) => {
       addItem,
       removeItem,
       getTotal,
+      getQuantity,
       cart
     }}>
       {children}

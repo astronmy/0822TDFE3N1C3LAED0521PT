@@ -1,5 +1,6 @@
 import { Container } from "@chakra-ui/react";
 import { Link } from "react-router-dom"
+import CartWidget from "./CartWidget";
 
 
 const Navbar = ({title}) =>{
@@ -10,7 +11,7 @@ const Navbar = ({title}) =>{
             </Link>
             <Container display='flex' flexDirection='row' justifyContent='space-evenly'>
                 <Link to="/products">Productos</Link>  
-                <Link to="/cart">Carrito</Link>  
+                <CartWidget/>
             </Container>
         </nav>
     )
